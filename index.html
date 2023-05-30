@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="parentElement">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cuenta Regresiva</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="nave" id="nave">
+            <img src="Firefly space ship not background 27012.jpg.png" width="100%">
+            <span id="textSpan" class="textSpan">Listos?</span>
+            <audio src="rocket-effects.mp3" id="audioLanzamiento"></audio>
+        </div>
+
+        <div class="lanzamiento">
+            <button onclick="lanzamiento()">Lanzamiento</button>
+        </div>
+    </div>
+
+    <script>
+        let audioLanzamiento = document.getElementById("audioLanzamiento");
+        let textSpan = document.getElementById("textSpan");
+        let contadorTiempo = 10;
+        let llave;
+
+        const nave = document.getElementById("nave");
+
+        function lanzamiento() {
+            audioLanzamiento.play();
+            let temporizdor_01 = setInterval(ticTac,1000);
+            llave = temporizdor_01;
+        }
+
+        function ticTac() {
+            textSpan.textContent = contadorTiempo;
+            contadorTiempo--;
+
+            if(contadorTiempo==-1) {
+                textSpan.textContent = contadorTiempo + 1;
+                clearInterval(llave);
+                nave.className = "nave on";
+                setTimeout(()=>
+                { audioLanzamiento.pause();
+                    nave.className = "nave";
+                    textSpan.textContent = "Listos?";
+                }
+                ,4500);
+            }
+        }
+    </script>
+</body>
+</html>
